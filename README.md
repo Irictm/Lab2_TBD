@@ -1,4 +1,4 @@
-# Lab1-Grupo2-TBD
+# Lab2-Grupo2-TBD
 
 Instrucciones de instalacion:
 Para correr esta aplicacion es necesario tener Postgresql, Spring v3.2.X+, Node.js v18+ y JDK 17+.
