@@ -18,15 +18,24 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public EmergencyEntity save(EmergencyEntity emergency) {
         try(Connection con = sql2o.open()) {
-            con.createQuery("INSERT INTO emergency (id, id_institution, state, name, description, responsible_coordinator)" +
-                            "values (:id, :id_institution, :state, :name, :description, :responsible_coordinator)")
+            con.createQuery("INSERT INTO emergency (id, id_institution, state, name, description, responsible_coordinator, latitude, longitude)" +
+                            "values (:id, :id_institution, :state, :name, :description, :responsible_coordinator, :latitude, :longitude)")
                     .addParameter("id", emergency.getId())
                     .addParameter("id_institution", emergency.getId_institution())
                     .addParameter("state", emergency.isState())
                     .addParameter("name", emergency.getName())
                     .addParameter("description", emergency.getDescription())
                     .addParameter("responsible_coordinator", emergency.getResponsible_coordinator())
+                    .addParameter("latitude", emergency.getLatitude())
+                    .addParameter("longitude", emergency.getLongitude())
                     .executeUpdate().getKey();
+
+            con.createQuery("UPDATE emergency " +
+                            "SET geom = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326) " +
+                            "WHERE id = :id")
+                    .addParameter("id", emergency.getId())
+                    .executeUpdate();
+
             return emergency;
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -50,7 +59,8 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     public EmergencyEntity update(EmergencyEntity emergency) {
         try(Connection con = sql2o.open()){
             con.createQuery("UPDATE emergency SET id_institution = :id_institution, state = :state," +
-                    " name = :name, description = :description, responsible_coordinator = :responsible_coordinator " +
+                    " name = :name, description = :description, responsible_coordinator = :responsible_coordinator," +
+                            " latitude = :latitude, longitude = :longitude " +
                             "WHERE id = :id")
                     .addParameter("id", emergency.getId())
                     .addParameter("id_institution", emergency.getId_institution())
@@ -58,7 +68,16 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
                     .addParameter("name", emergency.getName())
                     .addParameter("description", emergency.getDescription())
                     .addParameter("responsible_coordinator", emergency.getResponsible_coordinator())
+                    .addParameter("latitude", emergency.getLatitude())
+                    .addParameter("longitude", emergency.getLongitude())
                     .executeUpdate();
+
+            con.createQuery("UPDATE emergency " +
+                            "SET geom = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326) " +
+                            "WHERE id = :id")
+                    .addParameter("id", emergency.getId())
+                    .executeUpdate();
+
             return emergency;
         } catch(Exception e) {
             System.out.println(e.getMessage());

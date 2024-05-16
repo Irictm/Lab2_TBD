@@ -1,10 +1,11 @@
+CREATE EXTENSION postgis;
+
 -- Crear tabla institution
 CREATE TABLE Institution (
     id BIGSERIAL PRIMARY KEY,
     name TEXT
 );
 
--- Crear tabla emergency
 CREATE TABLE Emergency (
     id BIGSERIAL PRIMARY KEY,
     id_institution BIGINT,
@@ -12,6 +13,9 @@ CREATE TABLE Emergency (
     name TEXT,
     description TEXT,
     responsible_coordinator TEXT,
+    latitude FLOAT,
+    longitude FLOAT,
+    geom geometry(Point, 4326),
     FOREIGN KEY (id_institution) REFERENCES institution(id)
 );
 
