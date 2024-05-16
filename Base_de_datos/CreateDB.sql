@@ -42,7 +42,10 @@ CREATE TABLE Volunteer (
     availability BOOLEAN,
     name TEXT,
     password TEXT,
-    age INT
+    age INT,
+    latitude FLOAT,
+    longitude FLOAT,
+    geom geometry(Point, 4326)
 );
 
 -- Crear tabla ranking

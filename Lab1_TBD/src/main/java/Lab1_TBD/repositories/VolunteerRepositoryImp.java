@@ -16,14 +16,23 @@ public class VolunteerRepositoryImp implements VolunteerRepository{
     @Override
     public VolunteerEntity save(VolunteerEntity volunteer) {
         try(Connection con = sql2o.open()) {
-            con.createQuery("INSERT INTO volunteer (id, availability, name, password, age)" +
-                            "VALUES (:id, :availability, :name, :password, :age)")
+            con.createQuery("INSERT INTO volunteer (id, availability, name, password, age, latitude, longitude)" +
+                            "VALUES (:id, :availability, :name, :password, :age, :latitude, :longitude)")
                     .addParameter("id", volunteer.getId())
                     .addParameter("availability", volunteer.getAvailability())
                     .addParameter("name", volunteer.getName())
                     .addParameter("password", volunteer.getPassword())
                     .addParameter("age", volunteer.getAge())
+                    .addParameter("latitude", volunteer.getLatitude())
+                    .addParameter("longitude", volunteer.getLongitude())
                     .executeUpdate().getKey();
+
+            con.createQuery("UPDATE volunteer " +
+                            "SET geom = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326) " +
+                            "WHERE id = :id")
+                    .addParameter("id", volunteer.getId())
+                    .executeUpdate();
+
             return volunteer;
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -58,13 +67,23 @@ public class VolunteerRepositoryImp implements VolunteerRepository{
     public VolunteerEntity update(VolunteerEntity volunteer) {
         try(Connection con = sql2o.open()){
             con.createQuery("UPDATE volunteer SET availability = :availability, name = :name, " +
-                            "password = :password, age = :age WHERE id = :id")
+                            "password = :password, age = :age, latitude = :latitude, longitude = :longitude" +
+                            " WHERE id = :id")
                     .addParameter("id", volunteer.getId())
                     .addParameter("availability", volunteer.getAvailability())
                     .addParameter("name", volunteer.getName())
                     .addParameter("password", volunteer.getPassword())
                     .addParameter("age", volunteer.getAge())
+                    .addParameter("latitude", volunteer.getLatitude())
+                    .addParameter("longitude", volunteer.getLongitude())
                     .executeUpdate();
+
+            con.createQuery("UPDATE volunteer " +
+                            "SET geom = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326) " +
+                            "WHERE id = :id")
+                    .addParameter("id", volunteer.getId())
+                    .executeUpdate();
+
             return volunteer;
         } catch(Exception e) {
             System.out.println(e.getMessage());
