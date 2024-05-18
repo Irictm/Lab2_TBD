@@ -1,6 +1,7 @@
 package Lab1_TBD.controllers;
 
 import Lab1_TBD.entities.EmergencyEntity;
+import Lab1_TBD.entities.VolunteerEntity;
 import Lab1_TBD.services.EmergencyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,12 @@ public class EmergencyController {
     public ResponseEntity<List<EmergencyEntity>> getAllEmergencies() {
         List<EmergencyEntity> emergencies = emergencyService.getAll();
         return ResponseEntity.ok(emergencies);
+    }
+
+    @GetMapping("/emergencies/volunteersInRadius/{id}/{radius}")
+    public ResponseEntity<List<VolunteerEntity>> getVolunteersInEmergencyRadius(@PathVariable Long id, @PathVariable Long radius) {
+        List<VolunteerEntity> volunteers = emergencyService.getVolunteersInEmergencyRadius(id, radius);
+        return ResponseEntity.ok(volunteers);
     }
 
     @GetMapping("/emergencies/getActiveTasksCount/{id}")
