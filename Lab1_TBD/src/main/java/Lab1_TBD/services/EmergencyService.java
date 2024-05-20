@@ -1,6 +1,7 @@
 package Lab1_TBD.services;
 
 import Lab1_TBD.entities.EmergencyEntity;
+import Lab1_TBD.entities.VolunteerEntity;
 import Lab1_TBD.repositories.EmergencyRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class EmergencyService {
 
     public EmergencyEntity saveEmergency(EmergencyEntity emergency) { return emergencyRepository.save(emergency); }
     public EmergencyEntity getEmergencyById(Long id) { return emergencyRepository.findById(id); }
+
+    public List<VolunteerEntity> getVolunteersInEmergencyRadius(Long id, Long radius) { return emergencyRepository.getVolunteersInEmergencyRadius(id, radius); }
     public EmergencyEntity updateEmergency(EmergencyEntity emergency) { return emergencyRepository.update(emergency); }
     public boolean deleteEmergency(Long id) { return emergencyRepository.deleteById(id); }
     public List<EmergencyEntity> getAll(String token) {
