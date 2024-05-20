@@ -10,6 +10,6 @@ public interface EmergencyRepository {
     EmergencyEntity findById(Long id);
     EmergencyEntity update(EmergencyEntity emergency);
     boolean deleteById(Long id);
-    List<EmergencyEntity> findAll();
+    List<EmergencyEntity> findAll(String token);
     Integer getActiveTasksByIdEmergency(Long id);
 }

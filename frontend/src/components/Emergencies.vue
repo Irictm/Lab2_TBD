@@ -12,6 +12,9 @@
 <script>
 import axios from 'axios';
 import {ref} from 'vue';
+import { store } from '../store';
+
+const url = "http://localhost:8080";
 
 export default {
   data() {
@@ -28,7 +31,7 @@ export default {
   methods: {
     async getEmergencies() {
       try{
-        const response = await axios.get('http://localhost:8080/emergencies');
+        const response = await axios.get(url + "/emergencies?token=" + store.token);
         this.emergencies = await Promise.all(response.data.map(async item => {
           let estado;
           if (item.state) {

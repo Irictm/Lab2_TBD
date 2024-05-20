@@ -29,8 +29,8 @@ public class EmergencyController {
     }
 
     @GetMapping("/emergencies")
-    public ResponseEntity<List<EmergencyEntity>> getAllEmergencies() {
-        List<EmergencyEntity> emergencies = emergencyService.getAll();
+    public ResponseEntity<List<EmergencyEntity>> getAllEmergencies(String token) {
+        List<EmergencyEntity> emergencies = emergencyService.getAll(token);
         return ResponseEntity.ok(emergencies);
     }
 

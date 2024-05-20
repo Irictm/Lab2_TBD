@@ -1,16 +1,23 @@
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
- */
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import EmergenciesPage from '../pages/EmergenciesPage.vue';
+import Login from '../pages/Login.vue';
+import Register from '../pages/Register.vue';
 
-// Composables
-import { createRouter, createWebHistory } from 'vue-router/auto'
-import { setupLayouts } from 'virtual:generated-layouts'
+
+
+const routes: RouteRecordRaw[] = [
+  { path: '/', component: Login },
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
+  { path: '/emergencies', component: EmergenciesPage },
+  
+  
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  extendRoutes: setupLayouts,
-})
+  history: createWebHistory(),
+  routes,
+});
 
-export default router
+
+export default router;

@@ -18,8 +18,8 @@ public class EmergencyService {
     public EmergencyEntity getEmergencyById(Long id) { return emergencyRepository.findById(id); }
     public EmergencyEntity updateEmergency(EmergencyEntity emergency) { return emergencyRepository.update(emergency); }
     public boolean deleteEmergency(Long id) { return emergencyRepository.deleteById(id); }
-    public List<EmergencyEntity> getAll() {
-        return emergencyRepository.findAll();
+    public List<EmergencyEntity> getAll(String token) {
+        return emergencyRepository.findAll(token);
     }
     public Integer getActiveTasksCount(Long id) {
         return emergencyRepository.getActiveTasksByIdEmergency(id);

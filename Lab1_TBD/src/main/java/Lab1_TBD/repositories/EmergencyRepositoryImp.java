@@ -14,6 +14,23 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Autowired
     private Sql2o sql2o;
 
+    @Autowired
+    private JwtMiddlewareRepositoryImp JWT;
+
+    @Override
+    public List<EmergencyEntity> findAll(String token) {
+        if(JWT.validateToken(token)) {
+            String sql = "SELECT * FROM emergency ORDER BY id";
+            try (Connection con = sql2o.open()) {
+                return con.createQuery(sql).executeAndFetch(EmergencyEntity.class);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public EmergencyEntity save(EmergencyEntity emergency) {
@@ -99,16 +116,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
         }
     }
 
-    @Override
-    public List<EmergencyEntity> findAll() {
-        String sql = "SELECT * FROM emergency ORDER BY id";
-        try(Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(EmergencyEntity.class);
-        } catch(Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
+
 
     @Override
     public Integer getActiveTasksByIdEmergency(Long id) {

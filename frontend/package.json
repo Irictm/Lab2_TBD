@@ -11,8 +11,9 @@
     "@mdi/font": "6.2.95",
     "axios": "^1.6.8",
     "core-js": "^3.34.0",
+    "leaflet": "^1.9.4",
     "roboto-fontface": "*",
-    "vue": "^3.4.21",
+    "vue": "^3.4.27",
     "vuetify": "^3.5.8"
   },
   "devDependencies": {
