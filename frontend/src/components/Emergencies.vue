@@ -47,6 +47,8 @@ export default {
             estado: estado,
             "id de institucion": item.id_institution,
             coordinador: item.responsible_coordinator,
+            latitude: item.latitude,
+            longitude: item.longitude,
             "tareas activas": activeTasks
           };
         }));

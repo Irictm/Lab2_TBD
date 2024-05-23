@@ -1,18 +1,33 @@
 <template>
   <div class="container">
     <div class="emergencies-container">
-      <Emergencies />
+      <Emergencies ref="emergenciesComponent" />
     </div>
     <div class="map-container">
-      <Map />
+      <Map ref="map" />
+      <v-btn @click="markEmergencies">
+        Mostrar Ubicacion Emergencias
+      </v-btn>
     </div>
   </div>
 </template>
 
 <script>
-
+import Emergencies from '../components/Emergencies.vue'
 export default {
   name: 'EmergenciesPage',
+  components: {
+      Emergencies,
+      Map
+    },
+    methods: {
+      markEmergencies() {
+        let emergencies = this.$refs.emergenciesComponent.emergencies;
+        emergencies.forEach((eme) => {
+          this.$refs.map.putMarker(eme.latitude, eme.longitude)
+        });
+      }
+    }
  
 };
 </script>

@@ -5,6 +5,7 @@
     <v-btn text to="/">Iniciar Sesión</v-btn>
     <v-btn text to="/register">Registrarse</v-btn>
     <v-btn text to="/emergencies">Emergencias</v-btn>
+    <v-btn text to="/volunteers">Voluntarios</v-btn>
     <v-btn icon @click="toggleDrawer">
       <v-icon>{{ drawerVisible ? 'mdi-menu-open' : 'mdi-menu' }}</v-icon>
     </v-btn>
@@ -31,6 +32,7 @@ export default {
         { title: 'Iniciar Sesión', icon: 'mdi-login', to: '/' },
         { title: 'Registrarse', icon: 'mdi-account-plus', to: '/register' },
         { title: 'Emergencias', icon: 'mdi-alert', to: '/emergencies' },
+        { title: 'Voluntarios', icon: 'mdi-account', to: '/volunteers' },
       ],
     };
   },
