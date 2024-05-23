@@ -1,5 +1,11 @@
 CREATE EXTENSION postgis;
 
+CREATE TABLE IF NOT EXISTS UserV(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL
+);
+
 -- Crear tabla institution
 CREATE TABLE Institution (
     id BIGSERIAL PRIMARY KEY,
