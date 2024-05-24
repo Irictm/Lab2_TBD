@@ -44,7 +44,6 @@ export default defineComponent({
           router.push("/register");
         } else {
           store.token = response.data;
-          console.log(response.data);
           router.push("/emergencies");
         }
 

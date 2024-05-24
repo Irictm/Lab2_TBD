@@ -6,6 +6,7 @@
     <v-btn text to="/register">Registrarse</v-btn>
     <v-btn text to="/emergencies">Emergencias</v-btn>
     <v-btn text to="/volunteers">Voluntarios</v-btn>
+    <v-btn text to="/volunteersInRadius">Buscar Voluntarios en Radio</v-btn>
     <v-btn icon @click="toggleDrawer">
       <v-icon>{{ drawerVisible ? 'mdi-menu-open' : 'mdi-menu' }}</v-icon>
     </v-btn>
@@ -33,6 +34,7 @@ export default {
         { title: 'Registrarse', icon: 'mdi-account-plus', to: '/register' },
         { title: 'Emergencias', icon: 'mdi-alert', to: '/emergencies' },
         { title: 'Voluntarios', icon: 'mdi-account', to: '/volunteers' },
+        { title: 'Buscar Voluntarios en Radio', icon: 'mdi-map-search', to: '/volunteersInRadius' },
       ],
     };
   },
@@ -46,7 +48,7 @@ export default {
 
 <style scoped>
 .v-app-bar {
-  background-color: #1976D2; /* Color de fondo de la barra de navegación */
+  background-color: #1976D2;
   color: white;
 }
 </style>

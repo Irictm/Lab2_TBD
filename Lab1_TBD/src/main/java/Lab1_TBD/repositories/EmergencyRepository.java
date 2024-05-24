@@ -13,5 +13,5 @@ public interface EmergencyRepository {
     boolean deleteById(Long id);
     List<EmergencyEntity> findAll(String token);
     Integer getActiveTasksByIdEmergency(Long id);
-    List<VolunteerEntity> getVolunteersInEmergencyRadius(Long id, Long radius);
+    List<VolunteerEntity> getVolunteersInEmergencyRadius(Long id, Double radius);
 }

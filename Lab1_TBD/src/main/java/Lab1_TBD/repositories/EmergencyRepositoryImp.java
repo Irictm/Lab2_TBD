@@ -133,9 +133,10 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     }
 
     @Override
-    public List<VolunteerEntity> getVolunteersInEmergencyRadius(Long id, Long radius) {
+    public List<VolunteerEntity> getVolunteersInEmergencyRadius(Long id, Double radius) {
         String sql = "SELECT DISTINCT v.* FROM volunteer v, ranking r, task t, emergency e " +
-                "WHERE v.id = r.id_volunteer AND r.id_task = t.id AND t.id_emergency = :id AND e.id = :id AND ST_Distance(e.geom, v.geom) <= :radius";
+                "WHERE v.id = r.id_volunteer AND r.id_task = t.id AND t.id_emergency = :id AND e.id = :id AND " +
+                "ST_Distance(ST_Transform(e.geom, 32719), ST_Transform(v.geom, 32719)) <= :radius";
         try(Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("id", id)

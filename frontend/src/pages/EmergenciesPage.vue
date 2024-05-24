@@ -22,9 +22,10 @@ export default {
     },
     methods: {
       markEmergencies() {
+        this.$refs.map.clearMarkers();
         let emergencies = this.$refs.emergenciesComponent.emergencies;
         emergencies.forEach((eme) => {
-          this.$refs.map.putMarker(eme.latitude, eme.longitude)
+          this.$refs.map.putMarker(eme.index, eme.latitude, eme.longitude)
         });
       }
     }
@@ -35,23 +36,33 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  flex-direction: column; /* Para poner los componentes uno debajo del otro */
+  flex-direction: column;
   align-items: center;
 }
 
-.emergencies-container, .map-container {
-  width: 80%; /* Ajusta el ancho de los componentes */
-  margin-bottom: 20px; /* Espacio entre los componentes */
+.emergencies-container{
+  width: 80%;
+  min-width: 60%;
+  margin-bottom: 20px;
+  margin-right: 5%;
+}
+.map-container {
+  width: 80%;
+  min-width: 50%;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
   .container {
-    flex-direction: row; /* Para pantallas más grandes, poner los componentes uno al lado del otro */
+    flex-direction: row;
     justify-content: space-between;
   }
   
-  .emergencies-container, .map-container {
-    width: 48%; /* Ajusta el ancho para que ocupen mitad de pantalla */
+  .emergencies-container{
+    width: 48%;
+  }
+  .map-container {
+    width: 48%;
   }
 }
 </style>

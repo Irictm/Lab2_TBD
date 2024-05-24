@@ -36,7 +36,7 @@ public class EmergencyController {
     }
 
     @GetMapping("/emergencies/volunteersInRadius/{id}/{radius}")
-    public ResponseEntity<List<VolunteerEntity>> getVolunteersInEmergencyRadius(@PathVariable Long id, @PathVariable Long radius) {
+    public ResponseEntity<List<VolunteerEntity>> getVolunteersInEmergencyRadius(@PathVariable Long id, @PathVariable Double radius) {
         List<VolunteerEntity> volunteers = emergencyService.getVolunteersInEmergencyRadius(id, radius);
         return ResponseEntity.ok(volunteers);
     }

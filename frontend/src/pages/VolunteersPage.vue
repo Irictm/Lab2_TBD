@@ -22,9 +22,15 @@
     },
     methods: {
       markVolunteers() {
+        this.$refs.map.clearMarkers();
         let volunteers = this.$refs.volunteersComponent.volunteers;
         volunteers.forEach((vol) => {
-          this.$refs.map.putMarker(vol.latitude, vol.longitude)
+          if (vol.disponibilidad == "Disponible") {
+            this.$refs.map.putMarker(vol.index, vol.latitude, vol.longitude) 
+          }
+          else {
+            this.$refs.map.putMarker(vol.index, vol.latitude, vol.longitude, "grey")
+          }
         });
       }
     }
