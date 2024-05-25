@@ -14,6 +14,8 @@
 * Postgres SQL versión 12
 * PgAdmin versión 4
 * Visual Studio Code
+* POSTGIS
+  
   
 ## Backend
 * IntelliJ IDEA Ultimate
@@ -29,7 +31,7 @@ Esta guía te ayudará a configurar tu entorno de desarrollo para trabajar con I
 
 ## 1. Clonar el repositorio
 
-git clone https://github.com/josefoitzick/BDA_control2.git
+git clone https://github.com/Irictm/Lab2_TBD.git
 
 ## 2. Instalación de IntelliJ IDEA
 
@@ -50,6 +52,13 @@ git clone https://github.com/josefoitzick/BDA_control2.git
 1. Descarga pgAdmin desde el sitio web oficial: [Descargar pgAdmin](https://www.pgadmin.org/download/).
 
 2. Instala pgAdmin siguiendo las instrucciones para tu sistema operativo.
+
+### 3.3 Instalacion de POSTGIS
+
+1. Abrir StackBuillder, seleccionar POSTGRESQL 12
+
+2. Seleccionar Spacial Extensions, marcar la casilla PostGis 3.4 Bundle for PostgreSQL, continua con next para finalizar la instalación. 
+
 
 ## 5. Crear base de datos y cargar información
 
