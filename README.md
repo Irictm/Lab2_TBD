@@ -24,10 +24,9 @@
 
 ## Frontend
 * VUE versión 3
-* Nuxt 3
 
 # Guía de Instalación y Ejecución
-Esta guía te ayudará a configurar tu entorno de desarrollo para trabajar con IntelliJ IDEA, PostgreSQL, pgAdmin, postgis y ejecutar un proyecto de Vue.js en la carpeta de Front.
+Esta guía te ayudará a configurar tu entorno de desarrollo para trabajar con IntelliJ IDEA, PostgreSQL, pgAdmin, postgis y ejecutar un proyecto de Vue.js en la carpeta de Frontend.
 
 ## 1. Clonar el repositorio
 
@@ -55,7 +54,7 @@ git clone https://github.com/Irictm/Lab2_TBD.git
 
 ### 3.3 Instalacion de POSTGIS
 
-1. Abrir StackBuillder, seleccionar POSTGRESQL 12
+1. Abrir StackBuillder (Aplicación base de Postgresql), seleccionar POSTGRESQL 12.
 
 2. Seleccionar Spacial Extensions, marcar la casilla PostGis 3.4 Bundle for PostgreSQL, continua con next para finalizar la instalación. 
 
@@ -100,9 +99,6 @@ Después de ejecutar el script, verifica que los datos se hayan cargado correcta
 
 ¡Listo! Ahora estás preparado para cargar datos en tu base de datos PostgreSQL desde un script SQL.
 
-NOTA: Antes de iniciar el proyecto, se ha de editar unos archivos de acuerdo a la base de datos y localhost establecidos:
-- AdminTasks/src/main/java/com/Control2/AdminTasks/config/DatabaseContext.java ------> editar el puerto localhost a su conveniencia, además del usuario y la contraseña
-- AdminTasks/src/main/resources/application.properties ----> editar el puerto localhost a su conveniencia, además del usuario, la contraseña y el nombre de la base de datos
 
 ## 6. Ejecución de un Proyecto de Vue.js
 
@@ -110,8 +106,8 @@ Frontend:
 
 1. Abre VSC -> open folder -> selecciona frontend
   
-2. Ejecuta npm run dev, (En caso de no estar las dependencias instaladas `npm install`)
-   Nota: En el front end las ventanas de login y register estan completas, lo demas no fue logrado.
+2. Ejecuta npm run dev, (En caso de no estar las dependencias instaladas npm install, npm install axios, npm install leaflet)
+   
    
 ## 7. Ejecución del Proyecto desde IntelliJ IDEA
 
